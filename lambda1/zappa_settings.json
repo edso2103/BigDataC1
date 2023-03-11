@@ -1,0 +1,14 @@
+{
+    "dev": {
+        "app_function": "apps.f",
+        "aws_region": "us-east-1",
+        "project_name": "lambda1",
+        "runtime": "python3.8",
+        "s3_bucket": "zappa-c7s7lgk5s",
+        "keep_warm": false,
+        "role_name": "LabRole",
+        "manage_roles": false,
+        "apigateway_enabled": false
+
+    }
+}
