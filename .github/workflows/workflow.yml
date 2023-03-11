@@ -44,6 +44,7 @@ jobs:
           aws-region: us-east-1
       - name: test aws cli
         run: |
+          cd lambda1
           source env/bin/activate
           zappa update dev
           zappa invoke apps.f
