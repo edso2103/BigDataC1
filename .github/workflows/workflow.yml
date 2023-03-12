@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.8'
-      - name: install requirements and run tests
+      - name: install requirements
         run: |
           cd lambda1
           pip install virtualenv
@@ -35,6 +35,12 @@ jobs:
           ls
           source env/bin/activate
           pip install -r requirements.txt
+      - name: flake8
+        run: |
+          pip install flake8
+          
+      - name: run tests
+        run: pytest
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -42,6 +48,7 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           aws-region: us-east-1
+        
       - name: test aws cli
         run: |
           cd lambda1
