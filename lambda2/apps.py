@@ -13,7 +13,7 @@ def lambda_handler(event, context):
     body = obj.get()['Body'].read()
     archivo = json.loads(body)
 
-    csv_data = 'Area,#Habitaciones,#Banhos,Precio,Barrio\n'
+    csv_data = 'Area,#Habitaciones,#Banhos,Precio,Barrio,FechaDescarga\n'
 
     data = []
     interes = [['area'], ['rooms', 'name'],
@@ -45,6 +45,8 @@ def lambda_handler(event, context):
         csv_data += str(data[i][3])
         csv_data += ','
         csv_data += str(data[i][4])
+        csv_data += ','
+        csv_data += str(now.strftime("%Y-%m-%d"))
         csv_data += '\n'
 
     file_name2 = "landing-casas-final-" + now.strftime("%Y-%m-%d") + ".csv"
