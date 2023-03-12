@@ -3,7 +3,7 @@ import json
 import csv
 import datetime
 
-def lambda_handler(event, context):
+def toCsv():
     
     now = datetime.datetime.now()
     file_name ="landing-casas-"+ now.strftime("%Y-%m-%d") + ".txt"
@@ -16,31 +16,31 @@ def lambda_handler(event, context):
     
     csv='Area,#Habitaciones,#Banhos,Precio,Barrio\n'
 
-    todos = []
+    data = []
     interes = [['area'], ['rooms', 'name'], 
             ['baths', 'name'], ['price'],['locations', 'neighbourhoods', 'name']]
     tam = len(archivo['hits']['hits'])
-    for k in range(tam):
-        ims = archivo['hits']['hits'][k]['_source']['listing']
+    for i in range(tam):
+        ims = archivo['hits']['hits'][i]['_source']['listing']
         datos = []
-        for i in interes:
-            for j in range(len(i)):
-                sel = [[ims[i[j]][0] if type(ims.get(i[j])) == list else ims.get(i[j], ims)][0] if j ==0 else [sel[i[j]][0] if type(sel.get(i[j])) == list else sel.get(i[j], sel)][0]][0]
-            datos.append(sel)
-        todos.append(datos)
+        for j in interes:
+            for k in range(len(j)):
+                r = [[ims[j[k]][0] if type(ims.get(j[k])) == list else ims.get(j[k], ims)][0] if k ==0 else [r[j[k]][0] if type(r.get(j[k])) == list else r.get(j[k], r)][0]][0]
+            datos.append(r)
+        data.append(datos)
     
 
-    for i in range(0,len(todos)):
+    for i in range(0,len(data)):
     
-        csv+=str(todos[i][0])
+        csv+=str(data[i][0])
         csv+=','
-        csv+=str(todos[i][1])
+        csv+=str(data[i][1])
         csv+=','
-        csv+=str(todos[i][2])
+        csv+=str(data[i][2])
         csv+=','
-        csv+=str(todos[i][3])
+        csv+=str(data[i][3])
         csv+=','
-        csv+=str(todos[i][4])
+        csv+=str(data[i][4])
         csv+='\n'
 
     
@@ -48,3 +48,7 @@ def lambda_handler(event, context):
     s3 = boto3.resource('s3')
     object = s3.Object('zappa-w3i5doh7f', file_name2)
     object.put(Body=csv)
+
+def lambda_handler(event, context):
+    toCsv()
+    

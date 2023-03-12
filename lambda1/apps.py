@@ -3,9 +3,9 @@ from urllib.request import urlopen
 import boto3
 import requests
 import datetime
-def f(event, context):
+
+def datos(url):
     
-    url = 'https://api.fincaraiz.com.co/document/api/1.0/listing/search'
     data = {"filter":
            {"offer":
            {"slug":["sell"]},
@@ -29,12 +29,21 @@ def f(event, context):
     now = datetime.datetime.now()
     file_name ="landing-casas-"+ now.strftime("%Y-%m-%d") + ".txt"
     
-    s3 = boto3.client('s3')
-    s3.put_object(
-    Bucket='bucket2103',
-    Key=file_name,
-    Body=response.content,
-    ContentType='text/plain')
+    if(type(response)!=str):
+        s3 = boto3.client('s3')
+        s3.put_object(
+        Bucket='bucket2103',
+        Key=file_name,
+        Body=response.content,
+        ContentType='text/plain')
+        
+        
+    return response
+
+def f(event, context):
+    
+    url = 'https://api.fincaraiz.com.co/document/api/1.0/listing/search'
+    datos(url)
 
 
 
