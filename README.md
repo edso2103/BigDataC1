@@ -21,7 +21,7 @@ El archivo final guardará la siguiente información de las casas de la pagina f
 # Procedimiento
 
 1. Usando zappa crear una función lambda que descargue la primera página de resultados del sitio Finca Raiz(https://www.fincaraiz.com.co) para la venta de casas en el sector de chapinero.
-Esta lambda se debe ejecutar todos los lunes a las 9 am.
+Esta lambda se debe ejecutar todos los lunes a las 9 am, es importante tener en cuenta que hay una diferencia de 5 horas debido a que esta configurado en Londres, por esta razón, se colocó 14:00.
 La página html se debe guardar en un bucket s3://landing-casas-xxx/yyyy-mm-dd.html
 2. Al llegar la página web al bucket se debe disparar un segundo lambda que procese el archivo y extraiga la información de cada casa.
 Se debe crear un archivo CSV en s3://casas-final-xxx/yyyy-mm-dd.csv con la siguiente estructura de columnas:
