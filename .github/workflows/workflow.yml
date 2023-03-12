@@ -43,7 +43,8 @@ jobs:
           flake8 lambda2/apps.py
           
       - name: run tests
-        run: pytest lambda1/apps.py
+        run: pytest lambda1/test_scraping.py
+        
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
