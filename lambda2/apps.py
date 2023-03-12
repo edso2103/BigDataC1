@@ -3,7 +3,7 @@ import json
 import csv
 import datetime
 
-def toCsv():
+def lambda_handler(event, context):
     
     now = datetime.datetime.now()
     file_name ="landing-casas-"+ now.strftime("%Y-%m-%d") + ".txt"
@@ -48,7 +48,3 @@ def toCsv():
     s3 = boto3.resource('s3')
     object = s3.Object('zappa-w3i5doh7f', file_name2)
     object.put(Body=csv)
-
-def lambda_handler(event, context):
-    toCsv()
-    
