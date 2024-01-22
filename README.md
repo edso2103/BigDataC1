@@ -1,11 +1,7 @@
 # Presentación
-<p align="center"><img src="https://res-5.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1455514364/pim02bzqvgz0hibsra41.png"width="200" height="200">
-</img><br>
-<i><b>Docente:</b></i> Camilo Rodriguez
-<br>
 <i><b>Asignatura:</b></i> Big Data
 <br>
-<i><b>Estudiante:</b></i> Edna Sofía Orjuela Puentes <br> Herlendy Alejandro Sánchez Gaitán
+<i><b>Estudiante:</b></i> Edna Sofía Orjuela Puentes
 <br>
 <i><b>Tema:</b></i> Primer Parcial. Despliegue continuo
 <br>
